@@ -1,0 +1,25 @@
+{
+  "name": "pre-javascriptkoans",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jasmine test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codestates/PRE-JavaScriptKoans.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codestates/PRE-JavaScriptKoans/issues"
+  },
+  "homepage": "https://github.com/codestates/PRE-JavaScriptKoans#readme",
+  "dependencies": {
+    "jasmine": "^3.3.1"
+  }
+}

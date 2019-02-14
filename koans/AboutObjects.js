@@ -4,7 +4,7 @@ describe("About Objects", function () {
     var meglomaniac;
 
     beforeEach(function () {
-       meglomaniac = {  mastermind: "Joker", henchwoman: "Harley" };
+      meglomaniac = {  mastermind: "Joker", henchwoman: "Harley" };
     });
 
     it("should confirm objects are collections of properties", function () {
@@ -24,7 +24,7 @@ describe("About Objects", function () {
       henchman: "Pinky",
       battleCry: function (noOfBrains) {
         return "They are " + this.henchman + " and the" +
-          Array(noOfBrains + 1).join(" " + this.mastermind);
+        Array(noOfBrains + 1).join(" " + this.mastermind);
       }
     };
 

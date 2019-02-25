@@ -71,8 +71,7 @@ describe("About Higher Order Functions", function () {
 
   it("should use chain() ... .value() to use multiple higher order functions", function() {
     var result = [0, 1, 2].map(function(x) { return x+1 } )
-    .reduce(function (sum, x) { return sum + x })
-    .value();
+    .reduce(function (sum, x) { return sum + x });
 
     expect(result).toEqual(FILL_ME_IN);
   });

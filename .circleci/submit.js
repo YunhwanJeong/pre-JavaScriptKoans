@@ -90,7 +90,7 @@ exec('echo "$learnco_api_key"', (err, apikey) => {
     }
 
     const options = {
-      hostname: "graphql-dev-learnco.codestates.com",
+      hostname: "lcserver.codestates.com",
       path: "/api/homework",
       method: "POST",
       headers: {

@@ -58,7 +58,7 @@ exec('echo "$airtable_api_key"', (err, apikey) => {
     req.write(
       JSON.stringify({
         fields: {
-          subject: "javascript-konan",
+          subject: "PRE-JavaScriptKoans",
           username: username.trim()
         }
       })
@@ -126,7 +126,7 @@ exec('echo "$learnco_api_key"', (err, apikey) => {
     req.write(
       JSON.stringify({
         fields: {
-          subject: "pre-javascript-koans",
+          subject: "PRE-JavaScriptKoans",
           username: username.trim()
         }
       })

@@ -41,20 +41,19 @@ describe("About Applying What We Have Learnt", function() {
       var productsICanEat = [];
       var noNutsProducts = products.filter(function (product) {
         return product.containsNuts === false;
-      })
-      var hasMushrooms = noNutsProducts.ingredients.some(function(ing) {
-        return ing === "mushrooms";
-      })
+      });
+      for(let product of noNutsProducts) {
+        if(product.ingredients.every(function(ing) {return ing !== "mushrooms";})) {
+          productsICanEat.push(product);
+        }
+      }     
 
-
-
-      expect(productsICanEat.length).toBe(FILL_ME_IN);
+      expect(productsICanEat.length).toBe(1);
   });
 
   /*********************************************************************************/
 
   it("should add all the natural numbers below 1000 that are multiples of 3 or 5 (imperative)", function () {
-
     var sum = 0;
     for(var i=1; i<1000; i+=1) {
       if (i % 3 === 0 || i % 5 === 0) {
@@ -62,18 +61,31 @@ describe("About Applying What We Have Learnt", function() {
       }
     }
 
-    expect(sum).toBe(FILL_ME_IN);
+    expect(sum).toBe(233168);
   });
 
   it("should add all the natural numbers below 1000 that are multiples of 3 or 5 (functional)", function () {
+    var nums = [];
+    var range = function (start, end) {
+      if (start === end) {
+        nums.push(start);
+      }
+      for (let i = start; i <= end; i++) {
+        nums.push(i);
+      }
+    }
 
-    var sum = FILL_ME_IN;    /* try chaining range() and reduce() */
+    var sum = nums.reduce (function (sumOfMultiples, numbers) {
+      if (numbers % 3 === 0 || numbers % 5 === 0) {
+        return sumOfMultiples + numbers;
+      }
+    }, 0)    /* try chaining range() and reduce() */
 
-    expect(233168).toBe(FILL_ME_IN);
+    expect(233168).toBe(sum);
   });
 
   /*********************************************************************************/
-   it("should count the ingredient occurrence (imperative)", function () {
+  it("should count the ingredient occurrence (imperative)", function () {
     var ingredientCount = { "{ingredient name}": 0 };
 
     for (i = 0; i < products.length; i+=1) {

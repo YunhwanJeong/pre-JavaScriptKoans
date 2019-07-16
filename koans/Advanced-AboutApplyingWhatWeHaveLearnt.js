@@ -70,11 +70,13 @@ describe("About Applying What We Have Learnt", function() {
       if (start === end) {
         nums.push(start);
       }
+
       for (let i = start; i <= end; i++) {
         nums.push(i);
       }
     }
-
+    range(1, 1000);
+    
     var sum = nums.reduce (function (sumOfMultiples, numbers) {
       if (numbers % 3 === 0 || numbers % 5 === 0) {
         return sumOfMultiples + numbers;

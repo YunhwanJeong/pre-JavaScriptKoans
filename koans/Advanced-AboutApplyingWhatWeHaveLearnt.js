@@ -38,15 +38,18 @@ describe("About Applying What We Have Learnt", function() {
   it("given I'm allergic to nuts and hate mushrooms, it should find a pizza I can eat (functional)", function () {
       /* solve using filter() & all() / any() */
 
-      var productsICanEat = [];
-      var noNutsProducts = products.filter(function (product) {
-        return product.containsNuts === false;
-      });
-      for(let product of noNutsProducts) {
-        if(product.ingredients.every(function(ing) {return ing !== "mushrooms";})) {
-          productsICanEat.push(product);
-        }
-      }     
+      let nutFilter = (product) => product.containsNuts === false;
+      let mushroomFilter = (product) => product.ingredients.every(hasMushrooms);
+      let hasMushrooms = (ing) => ing !== "mushrooms";
+
+      let noNutsProducts = products.filter(nutFilter);
+      let productsICanEat = noNutsProducts.filter(mushroomFilter);
+
+      // for(let product of noNutsProducts) {
+      //   if(product.ingredients.every(function(ing) {return ing !== "mushrooms";})) {
+      //     productsICanEat.push(product);
+      //   }
+      // }
 
       expect(productsICanEat.length).toBe(1);
   });
@@ -65,21 +68,23 @@ describe("About Applying What We Have Learnt", function() {
   });
 
   it("should add all the natural numbers below 1000 that are multiples of 3 or 5 (functional)", function () {
-    var nums = [];
-    var range = function (start, end) {
+    let range = function (start, end) {
+      let nums = [];
       if (start === end) {
         nums.push(start);
       }
 
-      for (let i = start; i <= end; i++) {
+      for (let i = start; i < end; i++) {
         nums.push(i);
       }
+      return nums;
     }
-    range(1, 1000);
     
-    var sum = nums.reduce (function (sumOfMultiples, numbers) {
+    var sum = range(1, 1000).reduce (function (sumOfMultiples, numbers) {
       if (numbers % 3 === 0 || numbers % 5 === 0) {
         return sumOfMultiples + numbers;
+      } else {
+        return sumOfMultiples;
       }
     }, 0)    /* try chaining range() and reduce() */
 
@@ -96,15 +101,27 @@ describe("About Applying What We Have Learnt", function() {
         }
     }
 
-    expect(ingredientCount['mushrooms']).toBe(FILL_ME_IN);
+    expect(ingredientCount['mushrooms']).toBe(2);
   });
 
   it("should count the ingredient occurrence (functional)", function () {
     var ingredientCount = { "{ingredient name}": 0 };
 
     /* chain() together map(), flatten() and reduce() */
+    let ingredientFilter = (product) => product['ingredients'];
+    let onlyIngredients = products.map(ingredientFilter).flat();
 
-    expect(ingredientCount['mushrooms']).toBe(FILL_ME_IN);
+
+    for (let i = 0; i < onlyIngredients.length; i++) {
+      ingredientCount[onlyIngredients[i]] = onlyIngredients.reduce(function (total, ingredient) {
+        if (ingredient === onlyIngredients[i]) {
+          return total + 1;
+        } else {
+          return total;
+        }
+    }, 0);
+  }
+    expect(ingredientCount['mushrooms']).toBe(2);
   });
 
   /*********************************************************************************/

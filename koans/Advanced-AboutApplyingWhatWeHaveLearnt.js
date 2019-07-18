@@ -106,22 +106,35 @@ describe("About Applying What We Have Learnt", function() {
 
   it("should count the ingredient occurrence (functional)", function () {
     var ingredientCount = { "{ingredient name}": 0 };
+    
+  //   /* chain() together map(), flatten() and reduce() */
+  let ingredientFilter = (product) => product['ingredients'];
+  let ingredientCounter = function (total, ingredient) {
+    total[ingredient] = (total[ingredient] || 0) + 1;
+    return total;
+  };
+  products.map(ingredientFilter).flat().reduce(ingredientCounter, ingredientCount);
 
-    /* chain() together map(), flatten() and reduce() */
-    let ingredientFilter = (product) => product['ingredients'];
-    let onlyIngredients = products.map(ingredientFilter).flat();
 
 
-    for (let i = 0; i < onlyIngredients.length; i++) {
-      ingredientCount[onlyIngredients[i]] = onlyIngredients.reduce(function (total, ingredient) {
-        if (ingredient === onlyIngredients[i]) {
-          return total + 1;
-        } else {
-          return total;
-        }
-    }, 0);
-  }
-    expect(ingredientCount['mushrooms']).toBe(2);
+  expect(ingredientCount['mushrooms']).toBe(2);
+  //   var ingredientCount = { "{ingredient name}": 0 };
+
+  //   /* chain() together map(), flatten() and reduce() */
+  //   let ingredientFilter = (product) => product['ingredients'];
+  //   let onlyIngredients = products.map(ingredientFilter).flat();
+
+
+  //   for (let i = 0; i < onlyIngredients.length; i++) {
+  //     ingredientCount[onlyIngredients[i]] = onlyIngredients.reduce(function (total, ingredient) {
+  //       if (ingredient === onlyIngredients[i]) {
+  //         return total + 1;
+  //       } else {
+  //         return total;
+  //       }
+  //   }, 0);
+  // }
+  //   expect(ingredientCount['mushrooms']).toBe(2);
   });
 
   /*********************************************************************************/
